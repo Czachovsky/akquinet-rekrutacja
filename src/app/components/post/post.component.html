@@ -1,0 +1,88 @@
+<div class="awesomeLoader" *ngIf="isLoading" [@inOutAnimation]></div>
+<div class="container single-post-body">
+  <div class="row" *ngIf="isReady">
+    <div class="col-lg-8">
+      <h1 class="mt-4">{{postData.title}}</h1>
+      <p class="lead">
+        by
+        <a [href]="postData.author.profile_URL">{{postData.author.name}}</a>
+      </p>
+      <hr>
+      <p>Posted on {{postData.date | date}}</p>
+      <hr>
+      <img class="img-fluid rounded" [src]="postData.featured_image" alt="">
+      <hr>
+      <div class="post-content" [innerHTML]="postData.content"></div>
+      <hr>
+      <div class="row">
+        <div class="col-md-12">
+          <a class="btn btn-primary btn-md backToBlog" routerLink="/blog">Back to posts list</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+
+
+      <div class="card my-4" *ngIf="postData.categories.length">
+        <h5 class="card-header">Categories</h5>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <ul class="list-unstyled mb-0 row">
+                <li *ngFor="let category of postData.categories" class="col-lg-6">
+                  <a [href]="category.feed_url">{{category.name}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card my-4" *ngIf="postData.tags.length">
+        <h5 class="card-header">Tags</h5>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <ul class="list-unstyled mb-0 row">
+                <li *ngFor="let tag of postData.tags" class="col-lg-6">
+                  <a [href]="tag.feed_url">{{tag.name}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card my-4">
+        <h5 class="card-header">Comments</h5>
+        <div class="card-body comments">
+          <div class="row">
+            <div class="col-lg-12">
+              <ul class="list-unstyled mb-0">
+                <li class="single-comment" *ngFor="let comment of comments">
+                  <div class="single-comment-author">
+                    <span class="single-comment-image"
+                          [style.backgroundImage]="'url('+ comment.author.avatar_URL +')'"></span>
+                    <span>{{comment.author.name}}</span>
+                    <span>{{comment.date | date}}</span>
+                  </div>
+                  <div class="single-comment-body" [innerHTML]="comment.content">
+                  </div>
+                  <span *ngIf="comment.children" class="single-comment single-children">
+                    <div class="single-comment-author">
+                      <span class="single-comment-image"
+                            [style.backgroundImage]="'url('+ comment.children.author.avatar_URL +')'"></span>
+                      <span>{{comment.children.author.name}}</span>
+                      <span>{{comment.children.date | date}}</span>
+                    </div>
+                      <div class="single-comment-body" [innerHTML]="comment.children.content"></div>
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

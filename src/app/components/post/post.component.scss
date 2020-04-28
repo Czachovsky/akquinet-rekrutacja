@@ -1,0 +1,46 @@
+.single-post-body{
+.card-body.comments{
+  padding: 1rem;
+}
+ ::ng-deep img{
+    max-width: 100%;
+  }
+  li.single-comment{
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    margin-bottom: 20px;
+    &:last-child{
+      border: none;
+    }
+  }
+  .single-comment{
+    &.single-children{
+      padding-left:20px;
+      display: block;
+    }
+    &-image{
+      display: inline-block;
+      height:23px;
+      width: 23px;
+      background-size: cover;
+      border-radius: 50px;
+    }
+    &-author{
+      color: #87a6bc;
+      font-weight: 400;
+      font-size: 12px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      & > span{
+        margin-right:5px;
+        display: inline-block;
+      }
+    }
+    &-body{
+      font-size: 11px;
+    }
+  }
+  .backToBlog{
+    margin-bottom: 20px;
+  }
+}

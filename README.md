@@ -2,26 +2,39 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.6.
 
-## Development server
+# Project Structure
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+├── app
+    ├── components              -> folder, where we places all of components
+    │   ├── blog                -> blog site
+    │   ├── main-page           -> main page of app
+    │   ├── post                -> single post site
+    ├── shared                  -> folder, where we places all of shared, routing, services, guards etc.
+    │   ├── routing             -> folder with all app-routing.module
+    │   ├── services            -> folder with all of services
+```
 
-## Code scaffolding
+# App Routing
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+application contains 3 components:
 
-## Build
+- main-page component (MainPageComponent) - path: ''
+- blog component (BlogComponent) - path: 'blog'
+- post component (PostComponent) - in this routing we use 'post/ID_OF_POST'
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+# App Services
 
-## Running unit tests
+Project has one service (PostsService), that we use to get single post, get posts and get posts comments from wordpress api.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+| Function | Resource |
+| ------ | ------ |
+| getPosts | `https://public-api.wordpress.com/rest/v1/sites/en.blog.wordpress.com/posts/${data}` |
+| getSinglePost | `https://public-api.wordpress.com/rest/v1/sites/en.blog.wordpress.com/posts/${postID}` |
+| getPostComments | `https://public-api.wordpress.com/rest/v1/sites/en.blog.wordpress.com/posts/${postID}/replies/` |
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+# Live Demo
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+See [WordpressPosts app](https://mr-creations.pl/dev/Akquinet-rekrutacja/)

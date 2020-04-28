@@ -1,0 +1,51 @@
+<div class="awesomeLoader" *ngIf="isLoading" [@inOutAnimation]></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 blog-main">
+      <div class="row mb-2">
+       <div class="col-md-12">
+         <div class="customDropdown" (click)="dropDownShow = !dropDownShow">
+           <span>Show {{perPage}} posts per page</span>
+           <div class="dropDown" [ngClass]="{'showIt': dropDownShow}">
+             <span (click)="getPostsPerPage(5)">Show 5 posts per page</span>
+             <span (click)="getPostsPerPage(10)">Show 10 posts per page</span>
+             <span (click)="getPostsPerPage(15)">Show 15 posts per page</span>
+             <span (click)="getPostsPerPage(20)">Show 20 posts per page</span>
+           </div>
+         </div>
+
+       </div>
+      </div>
+      <div class="row mb-2">
+      <div class="blog-post col-md-12" *ngFor="let post of posts">
+        <div class="card flex-md-row mb-4 box-shadow h-md-250">
+          <div class="card-body d-flex flex-column align-items-start">
+            <div class="tags">
+              <span *ngFor="let tag of post.tags">{{tag.name}}</span>
+            </div>
+            <h3 class="mb-0">
+              <a class="text-dark" href="#" [innerHTML]="post.title" routerLink="/post/{{post.ID}}"></a>
+            </h3>
+            <div class="mb-1 text-muted">{{post.date | date}}
+              <span> / <svg class="bi bi-chat-square-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M2 0a2 2 0 00-2 2v8a2 2 0 002 2h2.5a1 1 0 01.8.4l1.9 2.533a1 1 0 001.6 0l1.9-2.533a1 1 0 01.8-.4H14a2 2 0 002-2V2a2 2 0 00-2-2H2z" clip-rule="evenodd"/>
+</svg> {{post.comment_count}}
+              </span>
+              <span> / <div class="author-thumb" *ngIf="post.author && post.author.avatar_URL" [style.backgroundImage]="'url('+ post.author.avatar_URL +')'"></div>{{post.author.name}}</span>
+            </div>
+            <p class="card-text mb-auto" [innerHTML]="post.excerpt"></p>
+          </div>
+          <div *ngIf="post.post_thumbnail && post.post_thumbnail.URL"  class="thumb" [style.backgroundImage]="'url('+ post.post_thumbnail.URL +')'"></div>
+        </div>
+      </div>
+      </div>
+      <nav aria-label="Page navigation blog-navigation">
+        <ul class="pagination">
+          <li class="page-item" *ngFor="let page of paginationArray; let i = index;"><a class="page-link" href="#" (click)="goToPage($event, i + 1)" >{{i + 1}}</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
