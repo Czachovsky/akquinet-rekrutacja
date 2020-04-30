@@ -46,10 +46,10 @@ export class PostComponent implements OnInit {
 
     this.postService.getSinglePost(postId).subscribe(data => {
       this.postData = data;
-      this.postData.tags = this.postData.tags = Object.keys(this.postData.tags).map(key => {
+      this.postData.tags = Object.keys(this.postData.tags).map(key => {
         return this.postData.tags[key];
       });
-      this.postData.categories = this.postData.categories = Object.keys(this.postData.categories).map(key => {
+      this.postData.categories = Object.keys(this.postData.categories).map(key => {
         return this.postData.categories[key];
       });
       this.isReady = true;
